@@ -1,0 +1,23 @@
+#nav {
+  /* background: black;
+  color: white; */
+  font-size: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+}
+
+#nav ul {
+  list-style-type: none;
+  display: flex;
+}
+
+#nav ul li {
+  margin: 0px 10px;
+}
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+}
