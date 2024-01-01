@@ -1,9 +1,12 @@
-import Auth from "./pages/Auth";
+import Home from "./pages/Home";
+// import Auth from "./pages/Auth";
+
 import "./App.css";
 function App() {
   return (
     <>
-      <Auth />
+      <Home />
+      {/* <Auth /> */}
     </>
   );
 }
