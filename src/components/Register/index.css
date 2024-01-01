@@ -1,0 +1,35 @@
+.login h1 {
+  margin-bottom: 30px;
+}
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login_form input {
+  height: 50px;
+}
+
+.login_form .input_field {
+  margin: 10px 0px;
+  padding: 2px 5px;
+}
+.login_form .input_btn {
+  margin-top: 30px;
+  background-color: #3498db;
+  outline: none;
+  border: none;
+  font-size: 22px;
+  color: white;
+}
+.login p {
+  text-align: center;
+}
+
+.login_switch {
+  font-weight: bold;
+  text-decoration: underline;
+  text-transform: uppercase;
+  cursor: pointer;
+}
