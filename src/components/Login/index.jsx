@@ -1,20 +1,20 @@
-import "./index.css";
+import classes from "./index.module.css";
 function Login({ loginState }) {
   return (
-    <div className="login">
+    <div className={classes.login}>
       <h1>Login to your account</h1>
-      <form className="login_form">
-        <input className="input_field" type="email" placeholder="Your email" />
+      <form className={classes.login_form}>
+        <input className={classes.input_field} type="email" placeholder="Your email" />
         <input
-          className="input_field"
+          className={classes.input_field}
           type="password"
           placeholder="Your password"
         />
-        <input className="input_btn" type="submit" value={"Sign in"} />
+        <input className={classes.input_btn} type="submit" value={"Sign in"} />
       </form>
       <p>
         Don&apos;t have an account?{" "}
-        <span onClick={loginState} className="login_switch">
+        <span onClick={loginState} className={classes.login_switch}>
           Register
         </span>
       </p>

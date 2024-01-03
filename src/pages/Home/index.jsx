@@ -1,7 +1,7 @@
 import Nav from "../../components/Nav";
 import Profile from "../../components/Profile";
 import Tweet from "../../components/Tweet";
-import "./index.css";
+import classes from "./index.module.css";
 function Home() {
   const tweetData = [
     {
@@ -29,7 +29,7 @@ function Home() {
   return (
     <>
       <Nav />
-      <div className="container">
+      <div className={classes.container}>
         <Profile />
         {tweetData.map((item, index) => {
           return <Tweet key={index} item={item} />;

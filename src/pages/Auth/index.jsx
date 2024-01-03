@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Login from "../../components/Login";
 import Register from "../../components/Register";
-import "./index.css";
+import classes from './index.module.css'
 function Auth() {
   const [isRegister, setIsRegister] = useState(true);
 
@@ -10,7 +10,7 @@ function Auth() {
     setIsRegister(currentRegisterState);
   };
   return (
-    <div className="container">
+    <div className={classes.container}>
       {isRegister == true ? (
         <Login loginState={switchState} />
       ) : (

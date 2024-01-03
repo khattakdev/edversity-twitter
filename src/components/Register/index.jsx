@@ -1,22 +1,22 @@
-import "./index.css";
+import classes from "./index.module.css";
 function Register({ registerState }) {
   return (
-    <div className="login">
+    <div className={classes.login}>
       <h1>Register your account</h1>
-      <form className="login_form">
-        <input className="input_field" type="email" placeholder="Your email" />
-        <input className="input_field" type="name" placeholder="Your name" />
+      <form className={classes.login_form}>
+        <input className={classes.input_field} type="email" placeholder="Your email" />
+        <input className={classes.input_field} type="name" placeholder="Your name" />
         <input
-          className="input_field"
+          className={classes.input_field}
           type="password"
           placeholder="Your password"
         />
         <input
-          className="input_field"
+          className={classes.input_field}
           type="password"
           placeholder="Confirm password"
         />
-        <input className="input_btn" type="submit" value={"Register"} />
+        <input className={classes.input_btn} type="submit" value={"Register"} />
       </form>
       <p>
         Already have an account,{" "}

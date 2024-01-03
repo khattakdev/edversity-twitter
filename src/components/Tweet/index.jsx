@@ -1,14 +1,14 @@
-import "./index.css";
+import classes from "./index.module.css";
 function Tweet({ item }) {
   const { title, content, date, likes } = item;
   return (
-    <div className="tweet">
-      <h2 className="tweet_title">{title}</h2>
-      <p className="tweet_body">{content}</p>
-      <div className="divider"></div>
-      <div className="tweet_stats">
-        <p className="tweet_date">{date}</p>
-        <p className="tweet_like">{likes} Likes</p>
+    <div className={classes.tweet}>
+      <h2 className={classes.tweet_title}>{title}</h2>
+      <p className={classes.tweet_body}>{content}</p>
+      <div className={classes.divider}></div>
+      <div className={classes.tweet_stats}>
+        <p className={classes.tweet_date}>{date}</p>
+        <p className={classes.tweet_like}>{likes} Likes</p>
       </div>
     </div>
   );
