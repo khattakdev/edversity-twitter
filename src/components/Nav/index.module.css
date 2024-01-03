@@ -1,0 +1,22 @@
+nav {
+  background-color: #6cc4ff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+nav .logo {
+  font-size: 25px;
+  text-transform: uppercase;
+}
+
+nav .list_items {
+  list-style-type: none;
+  display: flex;
+}
+
+nav .list_item {
+  margin: 0px 10px;
+}
