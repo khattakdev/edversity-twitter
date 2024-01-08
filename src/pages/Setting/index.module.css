@@ -1,0 +1,55 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container h2 {
+  font-size: 35px;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.container .basic {
+  margin-bottom: 50px;
+}
+
+.basic textarea {
+  resize: none;
+  height: 100px;
+}
+
+.container input {
+  height: 32px;
+}
+
+.submit_btn {
+  background-color: #3498db;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  color: white;
+}
+
+.basic_confirmation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.basic_confirmation input {
+  width: 45%;
+}
+
+.basic_confirmation .deny {
+  background-color: #e74c3c;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  color: white;
+}
