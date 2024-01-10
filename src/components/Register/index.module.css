@@ -2,6 +2,14 @@
   margin-bottom: 30px;
 }
 
+.error {
+  background-color: #e74c3c;
+  color: white;
+  border: 2px solid #a42c1f;
+  padding: 5px;
+  border-radius: 2px;
+}
+
 .login_form {
   display: flex;
   flex-direction: column;
