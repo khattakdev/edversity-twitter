@@ -1,4 +1,4 @@
-// import Home from "./pages/Home";
+import Home from "./pages/Home";
 // import Setting from "./pages/Setting";
 // import Followers from "./pages/Followers";
 import Auth from "./pages/Auth";
@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       {/* <Followers /> */}
-      {/* <Home /> */}
-      <Auth />
+      <Home />
+      {/* <Auth /> */}
     </>
   );
 }

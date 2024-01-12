@@ -6,7 +6,7 @@ function Profile() {
       <div className={classes.profile_basics}>
         <div className={classes.profile_basics_img}></div>
         <div>
-          <h2 className={classes.profile_basics_name}>Arsalan Khattak</h2>
+          <h2 className="text-2xl font-bold mt-6">Arsalan Khattak</h2>
           <p className={classes.profile_basics_handle}>@khattakdev</p>
         </div>
       </div>
