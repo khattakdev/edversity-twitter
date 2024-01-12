@@ -2,7 +2,7 @@ import classes from "./index.module.css";
 function Navigation() {
   return (
     <nav>
-      <h3 className={classes.logo}>Edverter</h3>
+      <h3 className="text-xl uppercase font-semibold">Edverter</h3>
       <ul className={classes.list_items}>
         <li className={classes.list_item}>Home</li>
         <li className={classes.list_item}>Followers</li>
