@@ -75,7 +75,7 @@ function Register({ registerState }) {
       </form>
       <p>
         Already have an account,{" "}
-        <span onClick={registerState} className="login_switch">
+        <span onClick={registerState} className={classes.login_switch}>
           Login
         </span>
       </p>

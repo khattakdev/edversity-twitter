@@ -1,17 +1,24 @@
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-// import Setting from "./pages/Setting";
-// import Followers from "./pages/Followers";
 import Auth from "./pages/Auth";
+import Followers from "./pages/Followers";
+import Followings from "./pages/Followings";
+import Setting from "./pages/Setting";
 
 import "./App.css";
-import Followings from "./pages/Followings";
 function App() {
   return (
     <>
-      {/* <Followers /> */}
-      {/* <Home /> */}
-      <Followings />
-      {/* <Auth /> */}
+      <Routes>
+        <Route path="/" element={<Auth />} />
+        <Route path=":id" element={<Home />} />
+        <Route path="/home">
+          <Route index element={<Home />} />
+          <Route path="followings" element={<Followings />} />
+          <Route path="followers" element={<Followers />} />
+        </Route>
+        <Route path="/setting" element={<Setting />} />
+      </Routes>
     </>
   );
 }
