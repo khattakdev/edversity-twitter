@@ -4,11 +4,13 @@ import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 
 import "./App.css";
+import Followings from "./pages/Followings";
 function App() {
   return (
     <>
       {/* <Followers /> */}
-      <Home />
+      {/* <Home /> */}
+      <Followings />
       {/* <Auth /> */}
     </>
   );

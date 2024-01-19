@@ -24,8 +24,8 @@ function Followers() {
         {followers.map((follower, index) => {
           return (
             <div key={index} className={classes.follower}>
-              <h3>John Doe</h3>
-              <p>@johndoe</p>
+              <h3>{follower.name}</h3>
+              <p>{follower.handle}</p>
             </div>
           );
         })}
