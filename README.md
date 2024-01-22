@@ -3,6 +3,7 @@
 ### Resources
 
 Colors: https://flatuicolors.com/
+Firebase: https://console.firebase.google.com
 
 ### Git Method
 

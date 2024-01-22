@@ -1,37 +1,66 @@
 import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
 import classes from "./index.module.css";
 function Login({ loginState }) {
-
+  const navigate = useNavigate();
   const [email, SetEmail] = useState("");
   const [password, SetPassword] = useState("");
   const [errorMessage, SetErrorMessage] = useState("");
 
-  const onLogin = (e) => {
+  const onLogin = async (e) => {
     e.preventDefault();
+    let errMessage = "";
     const validEmail = email.trim();
-    
-    if (!validEmail) {
-      SetErrorMessage("Please write your email!")
-    } else {
-      SetErrorMessage("Please write your password")
+
+    if (validEmail.length == 0) {
+      errMessage = "Please write your email!";
+    } else if (password.length == 0) {
+      errMessage = "Please write your password";
     }
 
-    SetErrorMessage("")
-    console.log("Email - ", email )
-    console.log("Password - ", password)
+    SetErrorMessage(errMessage);
 
-  }
-
+    if (!errMessage) {
+      try {
+        const user = await signInWithEmailAndPassword(auth, email, password);
+        console.log(user);
+        navigate("/home");
+      } catch (error) {
+        console.log(error.code);
+        console.log(error.message);
+        if (error.code == "auth/invalid-credential") {
+          SetErrorMessage("Invalid Credentails!");
+        }
+      }
+    }
+  };
 
   return (
     <div className={classes.login}>
       <h1>Login to your account</h1>
-       <p>{errorMessage}</p>
-      <form onSubmit={(e) => { onLogin(e)}} className={classes.login_form}>
-        <input value={email} onChange={(e) => { SetEmail(e.target.value)}} className={classes.input_field} type="email" placeholder="Your email" />
+      {errorMessage && <p className={classes.error}>{errorMessage}</p>}
+      <form
+        onSubmit={(e) => {
+          onLogin(e);
+        }}
+        className={classes.login_form}
+      >
         <input
-        value={password}
-        onChange={(e) => { SetPassword(e.target.value)}}
+          value={email}
+          onChange={(e) => {
+            SetEmail(e.target.value);
+          }}
+          className={classes.input_field}
+          type="email"
+          placeholder="Your email"
+        />
+        <input
+          value={password}
+          onChange={(e) => {
+            SetPassword(e.target.value);
+          }}
           className={classes.input_field}
           type="password"
           placeholder="Your password"
