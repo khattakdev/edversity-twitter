@@ -1,13 +1,31 @@
 import { useEffect, useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import classes from "./index.module.css";
 function Login({ loginState }) {
   const navigate = useNavigate();
+  const provider = new GoogleAuthProvider();
   const [email, SetEmail] = useState("");
   const [password, SetPassword] = useState("");
   const [errorMessage, SetErrorMessage] = useState("");
+
+  const onGoogleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        // "QQQ7XGvGWRSdhNxIv8OtmZgxJkb2"
+        // 4YjG5a0GdmbhpYRQMp02lDdZtvi2
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -54,6 +72,9 @@ function Login({ loginState }) {
       bio: "aosdjaodjasijdsadi",
       followings: 222,
       followers: 1234
+    }, 
+    "4YjG5a0GdmbhpYRQMp02lDdZtvi2": {
+      
     }
   }
 
@@ -86,6 +107,12 @@ function Login({ loginState }) {
           className={classes.input_field}
           type="password"
           placeholder="Your password"
+        />
+        <input
+          onClick={onGoogleLogin}
+          className={classes.input_google_btn}
+          type="button"
+          value={"Sign in with Google"}
         />
         <input className={classes.input_btn} type="submit" value={"Sign in"} />
       </form>
