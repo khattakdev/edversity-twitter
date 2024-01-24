@@ -7,7 +7,7 @@ import Setting from "./pages/Setting";
 
 import "./App.css";
 function App() {
-  console.log(import.meta.env);
+  // console.log(import.meta.env);
   return (
     <>
       <Routes>

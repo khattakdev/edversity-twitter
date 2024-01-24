@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
@@ -24,8 +24,8 @@ function Login({ loginState }) {
 
     if (!errMessage) {
       try {
-        const user = await signInWithEmailAndPassword(auth, email, password);
-        console.log(user);
+        const res = await signInWithEmailAndPassword(auth, email, password);
+        console.log(res.user.uid);
         navigate("/home");
       } catch (error) {
         console.log(error.code);
@@ -36,6 +36,28 @@ function Login({ loginState }) {
       }
     }
   };
+
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       navigate("/home");
+  //     } else {
+  //       console.log("User is not logged In!");
+  //     }
+  //   });
+  // }, []);
+  /*
+  users: {
+    "QQQ7XGvGWRSdhNxIv8OtmZgxJkb2": {
+      name: "Arsalan Khattak",
+      handle: "khattakdev",
+      bio: "aosdjaodjasijdsadi",
+      followings: 222,
+      followers: 1234
+    }
+  }
+
+  */
 
   return (
     <div className={classes.login}>
