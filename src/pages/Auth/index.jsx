@@ -9,6 +9,8 @@ function Auth() {
   const navigate = useNavigate();
   const [isRegister, setIsRegister] = useState(true);
   const [isAuth, setAuth] = useState(true);
+  const [isInMiddleOfRegistration, setIsInMiddleOfRegistration] =
+    useState(false);
 
   const switchState = () => {
     const currentRegisterState = !isRegister;
@@ -17,7 +19,7 @@ function Auth() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
+      if (user && !isInMiddleOfRegistration) {
         navigate("/home");
       } else {
         console.log("User is not logged in!");
@@ -33,7 +35,10 @@ function Auth() {
           {isRegister == true ? (
             <Login loginState={switchState} />
           ) : (
-            <Register registerState={switchState} />
+            <Register
+              setIsInMiddleOfRegistration={setIsInMiddleOfRegistration}
+              registerState={switchState}
+            />
           )}
         </div>
       )}

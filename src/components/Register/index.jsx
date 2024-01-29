@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { getDatabase, ref, set } from "firebase/database";
 import classes from "./index.module.css";
-function Register({ registerState }) {
+function Register({ registerState, setIsInMiddleOfRegistration }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,6 +11,7 @@ function Register({ registerState }) {
   const [errorMessages, setErrorMessages] = useState([]);
 
   const submitHandler = async (e) => {
+    setIsInMiddleOfRegistration(true);
     e.preventDefault();
 
     const updatedErrorMessages = [];
@@ -34,14 +36,20 @@ function Register({ registerState }) {
 
     if (updatedErrorMessages.length == 0) {
       try {
-        const user = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        console.log(user);
+        const res = await createUserWithEmailAndPassword(auth, email, password);
+        // Save the data to Database
+        const db = getDatabase();
+        set(ref(db, "users/" + res.user.uid), {
+          name: name,
+          bio: "A random user from a random place",
+          followers: 0,
+          followings: 0,
+        });
+
+        setIsInMiddleOfRegistration(false);
       } catch (error) {
         console.log(error);
+        setIsInMiddleOfRegistration(false);
       }
     }
   };
