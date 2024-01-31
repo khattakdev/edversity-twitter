@@ -1,0 +1,37 @@
+.tweet {
+  border: 1px solid #1d1d1d;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 40px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tweet input,
+.tweet textarea {
+  border: 1px solid black;
+  font-size: 18px;
+  padding: 10px;
+}
+.tweet .tweet_submit {
+  transition: all 0.2s linear;
+}
+
+.tweet .tweet_submit:hover {
+  transition: all 0.2s linear;
+  background-color: #535353;
+  color: white;
+  cursor: pointer;
+}
+
+.tweet_stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tweet_date,
+.tweet_like {
+  font-weight: 300;
+  color: #535353;
+}
