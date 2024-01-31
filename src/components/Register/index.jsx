@@ -41,9 +41,10 @@ function Register({ registerState, setIsInMiddleOfRegistration }) {
         const db = getDatabase();
         set(ref(db, "users/" + res.user.uid), {
           name: name,
-          bio: "A random user from a random place",
+          bio: "A random user from a random place!!",
           followers: 0,
           followings: 0,
+          tweets: {},
         });
 
         setIsInMiddleOfRegistration(false);
