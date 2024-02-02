@@ -3,49 +3,49 @@ import Profile from "../../components/Profile";
 import Tweet from "../../components/Tweet";
 import NewTweet from "../../components/NewTweet";
 import classes from "./index.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useEffect, useState } from "react";
 import { getDatabase, ref, onValue, set, push } from "firebase/database";
 function Home() {
   const navigate = useNavigate();
+  const params = useParams();
+  const { paramId } = params;
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState();
   const [userID, setUserID] = useState(null);
   const [newTweetTitle, setNewTweetTitle] = useState("");
   const [newTweetDescription, setNewTweetDescription] = useState("");
   const [tweetData, setTweetData] = useState([]);
-  // const tweetData = [
-  //   {
-  //     title: "My first tweet",
-  //     content:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, sed veniam odit tempora explicabo ipsa? Voluptas sunt sapiente earum tempora?",
-  //     date: "01 Jan, 2024",
-  //     likes: 20,
-  //   },
-  //   {
-  //     title: "My second tweet",
-  //     content:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, sed veniam odit tempora explicabo ipsa? Voluptas sunt sapiente earum tempora?",
-  //     date: "02 Jan, 2024",
-  //     likes: 40,
-  //   },
-  //   {
-  //     title: "My third tweet",
-  //     content:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, sed veniam odit tempora explicabo ipsa? Voluptas sunt sapiente earum tempora?",
-  //     date: "03 Jan, 2024",
-  //     likes: 60,
-  //   },
-  // ];
+  const [isUserOnHome, setIsUserOnHome] = useState(true);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        setUserID(uid);
+
         setLoggedIn(true);
+
+        if (paramId && paramId !== uid) {
+          setIsUserOnHome(false);
+        }
+        if (paramId) {
+          const db = getDatabase();
+          const userRef = ref(db, "users/" + paramId);
+          onValue(userRef, (snapshot) => {
+            const data = snapshot.val();
+            if (!data) {
+              navigate("/home");
+              setUserID(uid);
+            } else {
+              setUserID(paramId);
+            }
+            console.log(data);
+          });
+        } else {
+          setUserID(uid);
+        }
       } else {
         navigate("/");
         console.log("User is NOT logged in!");
@@ -79,6 +79,7 @@ function Home() {
     onValue(userDataRef, (snapshot) => {
       const data = snapshot.val();
       setUserData(data);
+      console.log(data);
 
       if (data?.tweets) {
         const tweets = data.tweets;
@@ -100,13 +101,15 @@ function Home() {
           <Nav />
           <div className={classes.container}>
             <Profile info={userData} />
-            <NewTweet
-              sendNewTweet={sendNewTweet}
-              title={newTweetTitle}
-              description={newTweetDescription}
-              setTitle={setNewTweetTitle}
-              setDescription={setNewTweetDescription}
-            />
+            {isUserOnHome && (
+              <NewTweet
+                sendNewTweet={sendNewTweet}
+                title={newTweetTitle}
+                description={newTweetDescription}
+                setTitle={setNewTweetTitle}
+                setDescription={setNewTweetDescription}
+              />
+            )}
             {tweetData.map((item, index) => {
               return <Tweet key={index} item={item} />;
             })}

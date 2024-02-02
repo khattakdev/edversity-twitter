@@ -15,6 +15,7 @@ function App() {
         <Route path=":id" element={<Home />} />
         <Route path="/home">
           <Route index element={<Home />} />
+          <Route path=":paramId" element={<Home />} />
           <Route path="followings" element={<Followings />} />
           <Route path="followers" element={<Followers />} />
         </Route>

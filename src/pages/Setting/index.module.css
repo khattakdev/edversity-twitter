@@ -29,7 +29,8 @@
   height: 32px;
 }
 
-.submit_btn {
+.basic_confirmation .submit_btn,
+.container .submit_btn {
   background-color: #3498db;
   outline: none;
   border: none;
