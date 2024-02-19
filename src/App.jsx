@@ -1,38 +1,30 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { increment, incrementByValue } from "./store/counter/counterSlice";
 
 function App() {
-  const counterRedux = useSelector((state) => state.counter);
-  const showCounterRedux = useSelector((state) => state.showCounter);
+  const counterRedux = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
-  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(0);
 
   const incrementCounter = () => {
-    dispatch({
-      type: "increment",
-    });
+    // dispatch({
+    //   type: "increment",
+    // });
+    dispatch(increment());
   };
 
-  const decrementCounter = () => {
-    dispatch({
-      type: "decrement",
-    });
-  };
-
-  const showCounterHandler = () => {
-    dispatch({
-      type: "show",
-    });
+  const incrementBySomething = () => {
+    dispatch(incrementByValue(20));
   };
 
   return (
     <>
-      {showCounterRedux && <h1>{counterRedux}</h1>}
+      <h1>{counterRedux}</h1>
 
       <div className="container">
         <button onClick={incrementCounter}>Increment</button>
-        <button onClick={decrementCounter}>Decrement</button>
-        <button onClick={showCounterHandler}>Show Counter</button>
+        <button onClick={incrementBySomething}>Increment by 10</button>
       </div>
     </>
   );
