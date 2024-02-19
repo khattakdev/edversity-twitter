@@ -1,6 +1,7 @@
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { increment, incrementByValue } from "./store/counter/counterSlice";
+import B from "./B";
+import { CounterContext } from "./context";
 
 function App() {
   const counterRedux = useSelector((state) => state.counter.value);
@@ -26,6 +27,9 @@ function App() {
         <button onClick={incrementCounter}>Increment</button>
         <button onClick={incrementBySomething}>Increment by 10</button>
       </div>
+      <CounterContext.Provider value={counterRedux}>
+        <B />
+      </CounterContext.Provider>
     </>
   );
 }

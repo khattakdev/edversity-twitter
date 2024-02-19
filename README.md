@@ -20,3 +20,14 @@ User.jsx
 - Central State
 - Reducer
 - Actions
+
+## Context API
+
+GLOBAL_THEME = "";
+
+App.jsx <- GLOBAL_THEME = "light"
+B
+C
+D
+E
+F <- console.log(GLOBAL_THEME);
