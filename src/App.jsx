@@ -6,7 +6,7 @@ import Followings from "./pages/Followings";
 import Setting from "./pages/Setting";
 
 import "./App.css";
-import Loader from "./components/Loader";
+
 function App() {
   // console.log(import.meta.env);
   return (

@@ -43,3 +43,16 @@
 .profile_stats h3 {
   font-weight: normal;
 }
+
+.follow_btn {
+  margin-left: 40px;
+  border: 1px solid #2a2a2a;
+  align-self: center;
+  padding: 5px 15px;
+  transition: 0.2s;
+}
+
+.follow_btn:hover {
+  background-color: #2a2a2a;
+  color: white;
+}

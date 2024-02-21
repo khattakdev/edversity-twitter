@@ -8,12 +8,13 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useEffect, useState } from "react";
 import { getDatabase, ref, onValue, set, push } from "firebase/database";
+import Loader from "../../components/Loader";
 function Home() {
   const navigate = useNavigate();
   const params = useParams();
   const { paramId } = params;
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState(null);
   const [userID, setUserID] = useState(null);
   const [newTweetTitle, setNewTweetTitle] = useState("");
   const [newTweetDescription, setNewTweetDescription] = useState("");
@@ -97,23 +98,28 @@ function Home() {
     <>
       {isLoggedIn ? (
         <>
-          {" "}
-          <Nav />
-          <div className={classes.container}>
-            <Profile info={userData} />
-            {isUserOnHome && (
-              <NewTweet
-                sendNewTweet={sendNewTweet}
-                title={newTweetTitle}
-                description={newTweetDescription}
-                setTitle={setNewTweetTitle}
-                setDescription={setNewTweetDescription}
-              />
-            )}
-            {tweetData.map((item, index) => {
-              return <Tweet key={index} item={item} />;
-            })}
-          </div>{" "}
+          {userData == null ? (
+            <Loader />
+          ) : (
+            <>
+              <Nav />
+              <div className={classes.container}>
+                <Profile isUserOnHome={isUserOnHome} info={userData} />
+                {isUserOnHome && (
+                  <NewTweet
+                    sendNewTweet={sendNewTweet}
+                    title={newTweetTitle}
+                    description={newTweetDescription}
+                    setTitle={setNewTweetTitle}
+                    setDescription={setNewTweetDescription}
+                  />
+                )}
+                {tweetData.map((item, index) => {
+                  return <Tweet key={index} item={item} />;
+                })}
+              </div>
+            </>
+          )}
         </>
       ) : null}
     </>
